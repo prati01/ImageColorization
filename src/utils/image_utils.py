@@ -2,9 +2,9 @@ import os
 import urllib.request
 
 import scipy.misc
-from PIL import Image
+from pil import Image
 import numpy as np
-from progressbar import ProgressBar, Percentage, Bar
+#from progressbar import ProgressBar, Percentage, Bar
 from skimage import color
 
 
@@ -77,19 +77,19 @@ def get_weights(file_name):
     if not os.path.isfile(file_name):
         print("Downloading trained model")
         # init progress bar
-        pbar = None
-
+        #pbar = None
+"""
         def show_progress(count, block_size, total_size):
             nonlocal pbar
             if pbar is None:
                 pbar = ProgressBar(maxval=total_size, widgets=[Percentage(), Bar()])
                 pbar.start()
             pbar.update(min(count * block_size, total_size))  # min because last block not full
-
+"""
         # download
         urllib.request.urlretrieve(os.path.join(weights_url, file_name.split("/")[-1]),
-                                   file_name,
-                                   reporthook=show_progress)
-        pbar.finish()
+                                   file_name)#,
+                                   #reporthook=show_progress)
+        #pbar.finish()
         print("Downloading done")
     return file_name
